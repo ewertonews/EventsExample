@@ -15,9 +15,21 @@ namespace EventsExample
         //3 - Raise the event
 
         //1
-        public delegate void VideoEncodedEventHandler(object sender, VideoEncodedEventArgs args);
+        //[Before] public delegate void VideoEncodedEventHandler(object sender, VideoEncodedEventArgs args);
+
+        //There is a newer way of creating a delegate for handling events:
+        //EventHandler 
+        //EventHandler<TEventArgs>
+
         //2
-        public event VideoEncodedEventHandler VideoEncoded;
+        //[Before] public event VideoEncodedEventHandler VideoEncoded;
+
+        //We use type here if we want to send adicional data  with the event
+        //This excludes the need for step 1
+        public event EventHandler<VideoEncodedEventArgs> VideoEncoded;
+        
+       
+
         public void Encode(Video video)
         {
             Console.WriteLine($"Encoding video {video.Title}...");
